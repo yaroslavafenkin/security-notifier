@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: security-notifier-$NEXT_MINOR_VERSION

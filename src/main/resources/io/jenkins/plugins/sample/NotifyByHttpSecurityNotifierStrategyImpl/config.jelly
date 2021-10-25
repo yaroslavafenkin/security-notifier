@@ -1,0 +1,11 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <!-- config files are required but can be empty if there are no options -->
+    <f:section title="Notify by HTTP configuration">
+        <f:block>
+            <f:entry title="${%URL to send notification to}">
+                <f:textbox field="url"/>
+            </f:entry>
+        </f:block>
+    </f:section>
+</j:jelly>
