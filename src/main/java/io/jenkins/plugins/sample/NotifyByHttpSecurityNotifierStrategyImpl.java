@@ -2,11 +2,17 @@ package io.jenkins.plugins.sample;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
-import okhttp3.*;
+import hudson.ProxyConfiguration;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,36 +22,37 @@ public class NotifyByHttpSecurityNotifierStrategyImpl extends SecurityNotifierSt
 
     private String url;
 
-    private transient OkHttpClient client;
-
     @DataBoundConstructor
     public NotifyByHttpSecurityNotifierStrategyImpl(String url) {
         this.url = url;
-        this.client = new OkHttpClient();
-    }
-
-    private Object readResolve() {
-        this.client = new OkHttpClient();
-        return this;
     }
 
     @Override
     public void sendNotification(String message) {
-        Request request = new Request.Builder()
-                .url(this.url)
-                .post(RequestBody.create(message, MediaType.parse("text/plain; charset=utf-8")))
-                .build();
-
+        URLConnection connection;
         try {
-            try (Response response = this.client.newCall(request).execute()) {
-                if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
+            // should also have a path when proxy isn't configured
+            connection = ProxyConfiguration.open(new URL(this.url));
+
+            if (connection instanceof HttpURLConnection) {
+                HttpURLConnection con = (HttpURLConnection) connection;
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type", "text/plain; utf-8");
+                con.setDoOutput(true);
+
+                try (OutputStream os = con.getOutputStream()) {
+                    byte[] input = message.getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
                 }
 
-                LOGGER.log(Level.FINEST, String.valueOf(response.code()));
+                if (con.getResponseCode() != 200) {
+                    LOGGER.log(Level.WARNING, "Failed to notify " + this.url + "Response code: " + con.getResponseCode());
+                }
             }
+        } catch (MalformedURLException e) {
+            LOGGER.log(Level.SEVERE, "URL is invalid: " + this.url, e);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Failed to notify via HTTP", e);
+            LOGGER.log(Level.SEVERE, "Failed to open connection to: " + this.url, e);
         }
     }
 

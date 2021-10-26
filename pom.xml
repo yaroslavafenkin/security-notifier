@@ -40,18 +40,6 @@
             <artifactId>mailer</artifactId>
             <version>1.34</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.9.1</version>
-        </dependency>
-        <!-- required by OkHTTP -->
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-common</artifactId>
-            <version>1.4.10</version>
-        </dependency>
     </dependencies>
     <licenses>
         <license>
