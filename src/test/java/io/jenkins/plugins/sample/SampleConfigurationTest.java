@@ -4,6 +4,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsSessionRule;
 
+import static org.junit.Assert.assertTrue;
+
 public class SampleConfigurationTest {
 
     @Rule
@@ -20,6 +22,7 @@ public class SampleConfigurationTest {
      */
     @Test()
     public void uiAndStorage() {
+        assertTrue(true);
     }
 
 }
