@@ -22,7 +22,7 @@ public class SampleConfigurationTest {
      */
     @Test()
     public void uiAndStorage() {
-        assertTrue(true);
+        assertFalse(false);
     }
 
 }
