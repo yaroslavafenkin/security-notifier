@@ -15,7 +15,7 @@
     <properties>
         <revision>1.0</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.357</jenkins.version>
+        <jenkins.version>2.319.3</jenkins.version>
         <java.level>8</java.level>
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     </properties>
@@ -25,8 +25,8 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.277.x</artifactId>
-                <version>961.vf0c9f6f59827</version>
+                <artifactId>bom-2.319.x</artifactId>
+                <version>1654.vcb_69d035fa_20</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -34,11 +34,9 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jenkins-ci.plugins/mailer -->
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>mailer</artifactId>
-            <version>438.v02c7f0a_12fa_4</version>
         </dependency>
     </dependencies>
     <licenses>
