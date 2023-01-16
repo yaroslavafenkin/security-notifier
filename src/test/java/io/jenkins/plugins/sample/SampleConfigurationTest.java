@@ -4,6 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsSessionRule;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 public class SampleConfigurationTest {
@@ -20,10 +21,15 @@ public class SampleConfigurationTest {
      * <li>misnamed {@code textbox}
      * </ul>
      */
-    @Test()
+    @Test
     public void uiAndStorage() {
         fail();
         // testing
+    }
+
+    @Test
+    public void anotherFailingTest() {
+        assertFalse(true);
     }
 
 }
