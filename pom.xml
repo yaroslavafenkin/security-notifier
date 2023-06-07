@@ -38,6 +38,10 @@
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>mailer</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.jenkins.plugins</groupId>
+            <artifactId>javax-mail-api</artifactId>
+        </dependency>
     </dependencies>
     <licenses>
         <license>

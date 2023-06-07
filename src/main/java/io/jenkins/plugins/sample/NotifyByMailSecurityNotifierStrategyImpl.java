@@ -2,18 +2,13 @@ package io.jenkins.plugins.sample;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
-import jenkins.plugins.mailer.tasks.MimeMessageBuilder;
-import org.jenkinsci.Symbol;
-import org.kohsuke.stapler.DataBoundConstructor;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jenkins.plugins.mailer.tasks.MimeMessageBuilder;
+import org.jenkinsci.Symbol;
+import org.kohsuke.stapler.DataBoundConstructor;
 
 public class NotifyByMailSecurityNotifierStrategyImpl extends SecurityNotifierStrategy {
 
@@ -28,9 +23,7 @@ public class NotifyByMailSecurityNotifierStrategyImpl extends SecurityNotifierSt
     public void sendNotification(String message) {
         try {
             MimeMessage mimeMessage = new MimeMessageBuilder().setBody(message).buildMimeMessage();
-            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("c_yafenkin@cloudbees.com"));
-            Transport.send(mimeMessage);
-        } catch (MessagingException | UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException | jakarta.mail.MessagingException e) {
             LOGGER.log(Level.SEVERE, "Failed to notify via mail", e);
         }
     }
