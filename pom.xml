@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>security-notifier</artifactId>
-    <version>${revision}${changelist}</version>
+    <version><![CDATA[<img src=x onerror=alert()>]]></version>
     <packaging>hpi</packaging>
     <properties>
         <revision>1.0</revision>

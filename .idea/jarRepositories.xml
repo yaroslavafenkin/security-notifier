@@ -7,6 +7,11 @@
       <option name="url" value="https://repo.maven.apache.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="cert-incrementals" />
+      <option name="name" value="cert-incrementals" />
+      <option name="url" value="https://repo.jenkins-ci.org/cert-incrementals/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="repo.jenkins-ci.org" />
       <option name="name" value="repo.jenkins-ci.org" />
       <option name="url" value="https://repo.jenkins-ci.org/public/" />
