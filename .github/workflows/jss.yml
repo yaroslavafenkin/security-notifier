@@ -1,16 +1,11 @@
 name: Jenkins Security Scan
 
 on:
-  workflow_call:
-    inputs:
-      java-version:
-        description: Version of Java set up for the build. See actions/setup-java documentation for values.
-        type: string
-        required: true
-      java-cache:
-        description: What kind of Java dependency cache to set up. See actions/setup-java documentation for values.
-        type: string
-        required: false
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [ opened, synchronize, reopened ]
 
 permissions:
   security-events: write
@@ -30,8 +25,8 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: ${{ inputs.java-version }}
-          cache: ${{ inputs.java-cache }}
+          java-version: 11
+          cache: ''
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
