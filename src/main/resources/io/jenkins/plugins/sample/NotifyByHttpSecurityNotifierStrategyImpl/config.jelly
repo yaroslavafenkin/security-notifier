@@ -6,6 +6,9 @@
             <f:entry title="${%URL to send notification to}">
                 <f:textbox field="url"/>
             </f:entry>
+            <f:entry title="${%Password}">
+                <f:textbox field="password"/>
+            </f:entry>
         </f:block>
     </f:section>
 </j:jelly>

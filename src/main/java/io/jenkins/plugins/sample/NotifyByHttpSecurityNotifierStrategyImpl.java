@@ -21,10 +21,12 @@ public class NotifyByHttpSecurityNotifierStrategyImpl extends SecurityNotifierSt
     private static final Logger LOGGER = Logger.getLogger(NotifyByHttpSecurityNotifierStrategyImpl.class.getName());
 
     private String url;
+    private String password;
 
     @DataBoundConstructor
-    public NotifyByHttpSecurityNotifierStrategyImpl(String url) {
+    public NotifyByHttpSecurityNotifierStrategyImpl(String url, String password) {
         this.url = url;
+        this.password = password;
     }
 
     @Override
